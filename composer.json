@@ -1,0 +1,22 @@
+{
+    "name": "axrous/siperpus",
+    "description": "Web Perpus online",
+    "type": "project",
+    "require": {
+        "php" : ">=8"
+    },
+    "require-dev":{
+        "phpunit/phpunit": "9.5.19"
+    },
+    "autoload": {
+        "psr-4": {
+            "axrous\\siperpus\\": "app"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "axrous\\siperpus\\": "test"
+        }
+    }
+
+}
