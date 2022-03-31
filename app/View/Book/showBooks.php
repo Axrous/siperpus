@@ -43,7 +43,7 @@
                       <tr>
                         <th scope="row">1</th>
                         <td><img src="<?= $book['gambar']?>" class="img-thumbnail img-fluid" alt=""></td>
-                        <td><?= $book['id']?></td>
+                        <td><?= $book['kode_buku']?></td>
                         <td><?= $book['judul']?></td>
                         <td><?= $book['penulis']?></td>
                         <td><?= $book['penerbit']?></td>

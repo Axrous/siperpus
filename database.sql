@@ -23,11 +23,12 @@ ALTER TABLE sessions
 
 
 CREATE TABLE books(
-    id VARCHAR(100) PRIMARY KEY,
+    kode_buku VARCHAR(8) NOT NULL,
     judul VARCHAR(100) NOT NULL,
     penulis VARCHAR(100) NOT NULL,
     penerbit VARCHAR(100) NOT NULL,
     tahun_terbit VARCHAR(4) NOT NULL,
     gambar LONGBLOB NOT NULL,
-    pdf LONGBLOB NOT NULL
+    pdf LONGBLOB NOT NULL,
+    PRIMARY KEY(kode_buku)
 ) ENGINE = InnoDB;

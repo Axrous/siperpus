@@ -6,8 +6,6 @@ use axrous\siperpus\Config\Database;
 use axrous\siperpus\Domain\Book;
 use PHPUnit\Framework\TestCase;
 
-use function PHPUnit\Framework\assertIsArray;
-
 class BookRepositoryTest extends TestCase {
 
     private BookRepository $bookRepository;
@@ -15,101 +13,112 @@ class BookRepositoryTest extends TestCase {
     protected function setUp():void
     {
         $this->bookRepository = new BookRepository(Database::getConnection());
+
         $this->bookRepository->deleteAll();
     }
 
     public function testSaveSuccess() {
+        
+        $kode = $this->bookRepository->getUniqKode();
         $book = new Book();
-        $book->id = "B0001";
+        $book->kode = $kode;
         $book->judul = "Buku Kenangan";
-        $book->penulis = "Arga Satya";
-        $book->penerbit = "Arga";
-        $book->tahunTerbit = "2022";
-        $book->gambar = "image.jpg";
+        $book->penulis = "Arga";
+        $book->penerbit = "Axrous";
+        $book->tahunTerbit = "2001";
+        $book->gambar = "gambar.jpg";
         $book->pdf = "buku.pdf";
 
         $this->bookRepository->save($book);
-
-        $result = $this->bookRepository->findById($book->id);
-
-        $this->assertEquals($result->id, $book->id);
-
+        $result = $this->bookRepository->findByKode($book->kode);
+        $this->assertEquals($result->kode, $book->kode);
     }
 
-    public function testFindByIdNotFound() {
 
-        $result = $this->bookRepository->findById("coba");
+
+    public function testFindByKodeNotFound() {
+        $result = $this->bookRepository->findByKode("kode");
 
         $this->assertNull($result);
     }
-    
+
     public function testFindAll() {
+                
+        $kode = $this->bookRepository->getUniqKode();
+
         $book = new Book();
-        $book->id = "B0001";
+        $book->kode = $kode;
         $book->judul = "Buku Kenangan";
-        $book->penulis = "Arga Satya";
-        $book->penerbit = "Arga";
-        $book->tahunTerbit = "2022";
-        $book->gambar = "image.jpg";
+        $book->penulis = "Arga";
+        $book->penerbit = "Axrous";
+        $book->tahunTerbit = "2001";
+        $book->gambar = "gambar.jpg";
         $book->pdf = "buku.pdf";
 
         $this->bookRepository->save($book);
 
-        $book = new Book();
-        $book->id = "B0002";
-        $book->judul = "Buku Ketenangan";
-        $book->penulis = "Arga Satya";
-        $book->penerbit = "Arga";
-        $book->tahunTerbit = "2022";
-        $book->gambar = "image.jpg";
-        $book->pdf = "buku.pdf";
+        $kode = $this->bookRepository->getUniqKode();
 
-        $this->bookRepository->save($book);
+        $book1 = new Book();
+        $book1->kode = $kode;
+        $book1->judul = "Buku Kenangan";
+        $book1->penulis = "Arga";
+        $book1->penerbit = "Axrous";
+        $book1->tahunTerbit = "2001";
+        $book1->gambar = "gambar.jpg";
+        $book1->pdf = "buku.pdf";
+        
+        $this->bookRepository->save($book1);
 
         $result = $this->bookRepository->findAll();
-        
         $this->assertNotEmpty($result);
     }
 
     public function testUpdate() {
+        $kode = $this->bookRepository->getUniqKode();
+
         $book = new Book();
-        $book->id = "B0001";
+        $book->kode = $kode;
         $book->judul = "Buku Kenangan";
-        $book->penulis = "Arga Satya";
-        $book->penerbit = "Arga";
-        $book->tahunTerbit = "2022";
-        $book->gambar = "image.jpg";
+        $book->penulis = "Arga";
+        $book->penerbit = "Axrous";
+        $book->tahunTerbit = "2001";
+        $book->gambar = "gambar.jpg";
         $book->pdf = "buku.pdf";
 
         $this->bookRepository->save($book);
 
-        $book->judul = "Buku Sejarah";
+        $book->judul = "Buku Sejahtera";
+        $book->penulis = "Arga Satya";
         $this->bookRepository->update($book);
 
-        $result = $this->bookRepository->findById($book->id);
-
+        $result = $this->bookRepository->findByKode($book->kode);
         $this->assertEquals($book->judul, $result->judul);
-
+        $this->assertEquals($book->penulis, $result->penulis);
     }
 
-    public function testDeleteByIdSuccess() {
+    public function testDeleteByKode() {
+        $kode = $this->bookRepository->getUniqKode();
+
         $book = new Book();
-        $book->id = "B0001";
+        $book->kode = $kode;
         $book->judul = "Buku Kenangan";
-        $book->penulis = "Arga Satya";
-        $book->penerbit = "Arga";
-        $book->tahunTerbit = "2022";
-        $book->gambar = "image.jpg";
+        $book->penulis = "Arga";
+        $book->penerbit = "Axrous";
+        $book->tahunTerbit = "2001";
+        $book->gambar = "gambar.jpg";
         $book->pdf = "buku.pdf";
 
         $this->bookRepository->save($book);
-        $result = $this->bookRepository->findById($book->id);
-        $this->assertEquals($book->id, $result->id);
 
-        $result = $this->bookRepository->deleteById($book->id);
+        $result = $this->bookRepository->findByKode($book->kode);
+        $this->assertEquals($book->kode, $result->kode);
+
+        $result = $this->bookRepository->deleteByKode($book->kode);
 
         $this->assertNull($result);
     }
 
 
+    
 }

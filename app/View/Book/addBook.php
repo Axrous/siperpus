@@ -22,39 +22,39 @@
                 <h1>Tambah Buku</h1>
 
                 <div class="mt-5 container ">
-                    <form action="" method="post">
+                    <form action="/admin/add-book" method="post" enctype="multipart/form-data">
                         <div class="mb-3 ">
                             <label class="form-label">Kode Buku</label>
-                            <input type="text" class="form-control" value="B0001" disabled>
+                            <input type="text" class="form-control" value="<?= $model['kode']?>" name="kode" disabled>
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Judul Buku</label>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" name="judul">
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Penulis Buku</label>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" name="penulis">
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Penerbit Buku</label>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control" name="penerbit">
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Tahun Terbit Buku</label>
-                            <input type="date" class="form-control" >
+                            <input type="text" class="form-control" name="tahunTerbit">
                           </div>
                           <div class="mb-3">
                             <label for="formFile" class="form-label">Gambar Buku</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <input class="form-control" type="file"  name="gambar">
                           </div>
                           <div class="mb-3">
                             <label for="formFile" class="form-label">File Buku</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <input class="form-control" type="file" name="pdf">
                           </div>
 
                           <div class="col-auto mb-5">
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="books.html" class="btn btn-secondary">Cancel</a>
+                            <a href="/admin/books" class="btn btn-secondary">Cancel</a>
                           </div>                 
                     </form>
                 </div>
