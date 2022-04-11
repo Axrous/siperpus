@@ -1,3 +1,7 @@
+<?php
+// header("Content-type: image/jpeg");
+?>
+
 <div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark ">
@@ -39,19 +43,21 @@
                       </tr>
                     </thead>
                     <tbody>
+                    <?php $angka = 1;?>
                         <?php foreach($model['books'] as $book) { ?>
                       <tr>
-                        <th scope="row">1</th>
-                        <td><img src="<?= $book['gambar']?>" class="img-thumbnail img-fluid" alt=""></td>
+                        <th scope="row"><?=$angka?></th>
+                        <td><img src="/image-book/<?= $book['kode_buku']?>" class="img-thumbnail img-fluid" alt="Gambar Buku" width="500"></td>
                         <td><?= $book['kode_buku']?></td>
                         <td><?= $book['judul']?></td>
                         <td><?= $book['penulis']?></td>
                         <td><?= $book['penerbit']?></td>
                         <td><?= $book['tahun_terbit']?></td>
-                        <td><?= $book['pdf']?></td>
-                        <td><a href="book-edit.html">Edit</a> || <a href="#">Hapus</a></td>
+                        <td><a target="_blank" href="/book/<?=$book['kode_buku']?>">Buku</a></td>
+                        <td><a  href="book-edit.html">Edit</a> || <a href="#">Hapus</a></td>
                       </tr>
-                      <?php }?>
+                      
+                      <?php $angka++; }?>
                     </tbody>
                   </table>
         </div>

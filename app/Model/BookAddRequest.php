@@ -4,7 +4,7 @@ namespace axrous\siperpus\Model;
 
 class BookAddRequest {
     public ?string $kode = null;
-    public ?string $judul = null;
+    public string $judul;
     public ?string $penulis = null;
     public ?string $penerbit = null;
     public ?string $tahunTerbit = null;

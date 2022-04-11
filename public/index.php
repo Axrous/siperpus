@@ -29,5 +29,7 @@ Router::add('GET', '/users/logout', UserController::class, 'logout', [MustLoginM
 Router::add('GET', '/admin/books', BookController::class, 'showAllBooks', [MustAdminMiddleware::class]);
 Router::add('GET', '/admin/add-book', BookController::class, 'addBook', [MustAdminMiddleware::class]);
 Router::add('POST', '/admin/add-book', BookController::class, 'postAddBook', [MustAdminMiddleware::class]);
+Router::add('GET', '/image-book/([0-9A-Z]*)', BookController::class, 'showImage', []);
+Router::add('GET', '/book/([0-9a-zA-Z]*)', BookController::class, 'detailBook', []);
 
 Router::run();

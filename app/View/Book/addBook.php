@@ -5,9 +5,9 @@
                     <h1 class="mt-3 border-bottom">SIPERPUS</h1>
                     <ul class="nav nav-pills flex-column mb-auto mt-5">
                       <li class="mb-3"><a href="/" class="text-decoration-none text-white">Dashboard</a></li>
-                      <li class="mb-3"><a href="user.html" class="text-decoration-none text-white">Anggota</a></li>
+                      <li class="mb-3"><a href="" class="text-decoration-none text-white">Anggota</a></li>
                       <li class="mb-3"><a href="/admin/books" class="text-decoration-none text-white">Buku</a></li>
-                      <li class="mb-3"><a href="transaction.html" class="text-decoration-none text-white">Transaksi</a></li>
+                      <li class="mb-3"><a href="" class="text-decoration-none text-white">Transaksi</a></li>
                       <li class="mb-3"><a href="#" class="text-decoration-none text-white">Laporan</a></li>
                     </ul>
                     <div class="fixed-bottom my-4 mx-5">
@@ -29,7 +29,7 @@
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Judul Buku</label>
-                            <input type="text" class="form-control" name="judul">
+                            <input type="text" class="form-control" name="judul" id="judul">
                           </div>
                           <div class="mb-3">
                             <label class="form-label">Penulis Buku</label>

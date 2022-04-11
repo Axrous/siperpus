@@ -49,7 +49,7 @@ class BookService {
     }
 
     public function ValidateBookAddRequest(BookAddRequest $request) {
-        if($request->judul = null || $request->penulis == null || $request->penerbit == null || $request->tahunTerbit == null || $request->gambar == null || $request->pdf == null || trim($request->judul) == "" || trim($request->penulis) == "" || trim($request->penerbit) == "" || trim($request->tahunTerbit) == "" || trim($request->gambar) == "" || trim($request->pdf) == "") {
+        if($request->judul == null || $request->penulis == null || $request->penerbit == null || $request->tahunTerbit == null || $request->gambar == null || $request->pdf == null || trim($request->judul) == "" || trim($request->penulis) == "" || trim($request->penerbit) == "" || trim($request->tahunTerbit) == "" || trim($request->gambar) == "" || trim($request->pdf) == "") {
             throw new ValidationException("Judul, Penulis, Penerbit, Tahun Terbit, Gambar, PDF tidak boleh kosong");
         }
     }
@@ -57,5 +57,15 @@ class BookService {
     public function showAllBooks() {
         $result = $this->bookRepository->findAll();
         return $result;
+    }
+
+    public function showImage(string $kode) {
+        $image = $this->bookRepository->findByKode($kode);
+        return $image->gambar;
+    }
+
+    public function detailBook(string $kode) {
+        $book = $this->bookRepository->findByKode($kode);
+        return $book;
     }
 }

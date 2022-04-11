@@ -12,6 +12,7 @@ namespace axrous\siperpus\Controller {
     use axrous\siperpus\Repository\UserRepository;
     use axrous\siperpus\Controller\UserController;
     use axrous\siperpus\Domain\User;
+    use axrous\siperpus\Repository\SessionRepository;
     use PHPUnit\Framework\TestCase;
 
     class UserControllerTest extends TestCase {
@@ -24,6 +25,8 @@ namespace axrous\siperpus\Controller {
             $this->userController = new UserController();
 
             $this->userRepository = new UserRepository(Database::getConnection());
+            $sessionRepository = new SessionRepository(Database::getConnection());
+            $sessionRepository->deleteAll();
             $this->userRepository->deleteAll();
 
             putenv("mode=test");

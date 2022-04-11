@@ -44,16 +44,21 @@ class BookController{
         $kode = $this->bookRepository->getUniqKode();
         
         $request = new BookAddRequest();
-        $request->kode = $_POST['kode'];
+        $request->kode = $kode;
         $request->judul = $_POST['judul'];
         $request->penulis = $_POST['penulis'];
         $request->penerbit = $_POST['penerbit'];
         $request->tahunTerbit = $_POST['tahunTerbit'];
         $request->gambar = file_get_contents($_FILES['gambar']['tmp_name']);
         $request->pdf = file_get_contents($_FILES['pdf']['tmp_name']);
+        // $request->gambar = $_POST['gambar'];
+        // $request->pdf = $_POST['pdf'];
 
         try {
             $this->bookService->addBook($request);
+            // var_dump($request->judul);
+            // var_dump($_POST['judul']);
+            // var_dump($request->penulis);
             View::redirect('/admin/books');
         } catch(ValidationException $exception) {
             View::render('Book/addBook',[
@@ -64,5 +69,24 @@ class BookController{
         }
     }
 
+    public function showImage(string $kode) {
+        $image = $this->bookService->showImage($kode);
+        header("Content-type: image/jpeg");
+        echo $image;
+    }
+
+    public function detailBook(string $kode) {
+        $book = $this->bookService->detailBook($kode);
+        // header('Content-type: application/pdf');
+        // header('Content-Disposition: inline; filename=document.pdf');
+        // // header('Content-Transfer-Encoding: binary');
+        // // header('Accept-Ranges: bytes');
+        // echo $book;
+        // readfile($book);
+        View::render('/Book/detail-book', [
+            "title" => "SIPERPUS",
+            "pdf" => $book->pdf
+        ]);
+    }
 
 }
