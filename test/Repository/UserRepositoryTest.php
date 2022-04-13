@@ -40,4 +40,21 @@ class UserRepositoryTest extends TestCase {
         $this->assertNull($user);
     }
 
+    public function testSumOfUsers() {
+
+        $user = new User();
+        $user->id = 'arga';
+        $user->email = 'argsatya16@gmail.com';
+        $user->gender = 'Pria';
+        $user->name = 'Arga Satya M';
+        $user->password = 'rahasia';
+        $user->role = '1';
+
+        $this->userRepository->save($user);
+
+        $result = $this->userRepository->sumOfUsers();
+
+        $this->assertEquals(1, $result);
+    }
+
 }

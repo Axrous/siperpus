@@ -68,4 +68,10 @@ class BookService {
         $book = $this->bookRepository->findByKode($kode);
         return $book;
     }
+
+    public function showSumUsers() {
+        $sumUsers = $this->bookRepository->sumOfBook();
+
+        return $sumUsers;
+    }
 }

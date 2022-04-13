@@ -119,6 +119,26 @@ class BookRepositoryTest extends TestCase {
         $this->assertNull($result);
     }
 
+    public function testSumBook() {
+                        
+        $kode = $this->bookRepository->getUniqKode();
 
+        $book = new Book();
+        $book->kode = $kode;
+        $book->judul = "Buku Kenangan";
+        $book->penulis = "Arga";
+        $book->penerbit = "Axrous";
+        $book->tahunTerbit = "2001";
+        $book->gambar = "gambar.jpg";
+        $book->pdf = "buku.pdf";
+
+        $this->bookRepository->save($book);
+
+
+        $result = $this->bookRepository->sumOfBook();
+
+        $this->assertEquals(1, $result);
+        // $this->assertEquals(1, $result);
+    }
     
 }

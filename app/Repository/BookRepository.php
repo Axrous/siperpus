@@ -91,4 +91,12 @@ class BookRepository {
     public function deleteAll():void {
         $this->connection->exec("DELETE FROM books");
     }
+
+    public function sumOfBook() {
+
+        $statement = $this->connection->query("SELECT COUNT(*) as SumBooks FROM books");
+        $result = $statement->fetchColumn();
+
+        return $result;
+    }
 }

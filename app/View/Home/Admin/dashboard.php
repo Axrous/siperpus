@@ -1,14 +1,14 @@
 <div class="container-fluid">
         <div class="row flex-nowrap">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark ">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark ">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 sticky-top">
                     <h1 class="mt-3 border-bottom">SIPERPUS</h1>
                     <ul class="nav nav-pills flex-column mb-auto mt-5">
-                        <li class="mb-3"><a href="index.html" class="text-decoration-none text-white">Dashboard</a></li>
-                        <li class="mb-3"><a href="user.html" class="text-decoration-none text-white">Anggota</a></li>
-                        <li class="mb-3"><a href="/admin/books" class="text-decoration-none text-white">Buku</a></li>
-                        <li class="mb-3"><a href="transaction.html" class="text-decoration-none text-white">Transaksi</a></li>
-                        <li class="mb-3"><a href="#" class="text-decoration-none text-white">Laporan</a></li>
+                      <li class="mb-3"><a href="/" class="text-decoration-none text-white">Dashboard</a></li>
+                      <li class="mb-3"><a href="/admin/users" class="text-decoration-none text-white">Anggota</a></li>
+                      <li class="mb-3"><a href="/admin/books" class="text-decoration-none text-white">Buku</a></li>
+                      <li class="mb-3"><a href="" class="text-decoration-none text-white">Transaksi</a></li>
+                      <li class="mb-3"><a href="#" class="text-decoration-none text-white">Laporan</a></li>
                     </ul>
                     <div class="fixed-bottom my-4 mx-5">
                       <a href="/users/logout" class="text-decoration-none" style="color:white;"><i class="bi bi-door-closed"></i>Logout</a>
@@ -23,13 +23,13 @@
                     <div class="card border-dark" style="width: 200px;">
                         <div class="card-body">
                               <h6 class="card-subtitle mb-2">Anggota</h6>
-                              <p class="card-text" style="font-size: 50px;">20</p>
+                              <p class="card-text" style="font-size: 50px;"><?=$model['sumUsers']?></p>
                         </div>
                       </div>
                       <div class="card border-dark" style="width: 200px;">
                         <div class="card-body">
                               <h6 class="card-subtitle mb-2 ">Buku</h6>
-                              <p class="card-text" style="font-size: 50px;">100</p>
+                              <p class="card-text" style="font-size: 50px;"><?=$model['sumBooks']?></p>
                         </div>
                       </div>
                       <div class="card border-dark" style="width: 200px;">

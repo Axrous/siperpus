@@ -5,7 +5,7 @@
                     <h1 class="mt-3 border-bottom">SIPERPUS</h1>
                     <ul class="nav nav-pills flex-column mb-auto mt-5">
                       <li class="mb-3"><a href="/" class="text-decoration-none text-white">Dashboard</a></li>
-                      <li class="mb-3"><a href="" class="text-decoration-none text-white">Anggota</a></li>
+                      <li class="mb-3"><a href="/admin/users" class="text-decoration-none text-white">Anggota</a></li>
                       <li class="mb-3"><a href="/admin/books" class="text-decoration-none text-white">Buku</a></li>
                       <li class="mb-3"><a href="" class="text-decoration-none text-white">Transaksi</a></li>
                       <li class="mb-3"><a href="#" class="text-decoration-none text-white">Laporan</a></li>

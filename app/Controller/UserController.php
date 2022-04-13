@@ -83,4 +83,14 @@ class UserController {
         $this->sessionService->destroy();
         View::redirect('/');
     }
+
+    public function users() {
+
+        $user = $this->userService->showAllUsers();
+
+        View::render("Home/Admin/users", [
+            "title" => "Anggota Perpus",
+            "user" => $user
+        ]);
+    }
 }

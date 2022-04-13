@@ -53,5 +53,24 @@ class UserRepository {
         $this->connection->exec("DELETE FROM users");
     }
 
+    public function sumOfUsers() {
 
+        $statement = $this->connection->prepare("SELECT COUNT(*) as sumOfUsers FROM users WHERE role=?");
+        $statement->execute([1]);
+        $result = $statement->fetchColumn();
+
+        return $result;
+    }
+
+    public function findAll(): ?array {
+        $statement = $this->connection->prepare("SELECT id, name, gender, email FROM users WHERE role=?");
+        $statement->execute([1]);
+
+        if($result = $statement->fetchAll(PDO::FETCH_ASSOC)) {
+            return $result;
+        } else {
+            return null;
+        }
+
+    }
 }

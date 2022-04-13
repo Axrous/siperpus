@@ -84,4 +84,15 @@ class UserService {
             throw new ValidationException("id, password cannot blank");
        }
     }
+
+    public function showAllUsers() {
+        $result = $this->userRepository->findAll();
+        return $result;
+    }
+
+    public function showSumUsers() {
+        $result =$this->userRepository->sumOfUsers();
+
+        return $result;
+    }
 }

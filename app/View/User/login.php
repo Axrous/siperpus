@@ -21,7 +21,7 @@
                       <div class="input-group mb-4 d-flex justify-content-center">
                         <span class="input-group-text" id="basic-addon1"><i class="bi bi-key"  style="font-size: 14px;"></i></span>
                         <div class="col-9">
-                        <input type="text" class="form-control col-xs-2" placeholder="Password" name="password" aria-describedby="basic-addon1" style="font-family:'Roboto Mono'; font-size: 14px;">
+                        <input type="password" class="form-control col-xs-2" placeholder="Password" name="password" aria-describedby="basic-addon1" style="font-family:'Roboto Mono'; font-size: 14px;">
                         </div>
                       </div>
     

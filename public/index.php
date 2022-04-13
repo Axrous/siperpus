@@ -24,6 +24,7 @@ Router::add('POST', '/users/register', UserController::class, 'postRegister', [M
 Router::add('GET', '/users/login', UserController::class, "login", [MustNotLoginMiddleware::class]);
 Router::add('POST', '/users/login', UserController::class, 'postLogin', [MustNotLoginMiddleware::class]);
 Router::add('GET', '/users/logout', UserController::class, 'logout', [MustLoginMiddleware::class]);
+Router::add('GET', '/admin/users',UserController::class, 'users', [MustAdminMiddleware::class]);
 
 //Book Controller
 Router::add('GET', '/admin/books', BookController::class, 'showAllBooks', [MustAdminMiddleware::class]);
