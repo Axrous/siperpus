@@ -36,6 +36,7 @@ class HomeController {
         $user = $this->sessionService->current();
         $sumBook = $this->bookService->showSumUsers();
         $sumUsers = $this->userService->showSumUsers();
+        $allBook = $this->bookService->showAllBooks();
 
         if($user == null) {
             View::render('Home/index', [
@@ -46,8 +47,9 @@ class HomeController {
                 View::render('Home/dashboard', [
                     "title" => "Dashboard",
                     "user" => [
-                        "name" => $user->name
-                    ]
+                        "name" => $user->name,
+                    ],
+                    "books" => $allBook
                 ]);
             }
             if($user->role == "2") {

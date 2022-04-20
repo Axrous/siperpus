@@ -32,3 +32,23 @@ CREATE TABLE books(
     pdf LONGBLOB NOT NULL,
     PRIMARY KEY(kode_buku)
 ) ENGINE = InnoDB;
+
+
+CREATE TABLE peminjaman(
+    id_peminjaman VARCHAR(4) NOT NULL,
+    id_user VARCHAR(100) NOT NULL,
+    kode_buku VARCHAR(100) NOT NULL,
+    tanggal_pinjam DATETIME,
+    PRIMARY KEY(id_peminjaman)
+) ENGINE = InnoDB;
+
+ALTER TABLE peminjaman
+    ADD CONSTRAINT fk_peminjaman_buku
+        FOREIGN KEY (kode_buku)
+            REFERENCES books(kode_buku);
+
+
+ALTER TABLE peminjaman
+    ADD CONSTRAINT fk_peminjaman_user
+        FOREIGN KEY (id_user)
+            REFERENCES users(id);

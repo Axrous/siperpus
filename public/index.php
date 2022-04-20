@@ -32,5 +32,7 @@ Router::add('GET', '/admin/add-book', BookController::class, 'addBook', [MustAdm
 Router::add('POST', '/admin/add-book', BookController::class, 'postAddBook', [MustAdminMiddleware::class]);
 Router::add('GET', '/image-book/([0-9A-Z]*)', BookController::class, 'showImage', []);
 Router::add('GET', '/book/([0-9a-zA-Z]*)', BookController::class, 'detailBook', []);
-
+Router::add('GET', '/admin/edit-book/([0-9a-zA-Z]*)', BookController::class, 'updateBook', [MustAdminMiddleware::class]);
+Router::add('POST', '/admin/edit-book', BookController::class, 'postUpdateBook', [MustAdminMiddleware::class]);
+Router::add('GET', '/admin/delete-book/([0-9a-zA-Z]*)', BookController::class, 'deleteBook', [MustAdminMiddleware::class]);
 Router::run();

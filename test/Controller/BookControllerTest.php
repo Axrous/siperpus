@@ -9,10 +9,11 @@ namespace axrous\siperpus\App{
 namespace axrous\siperpus\Controller{
 
 use axrous\siperpus\Config\Database;
-    use axrous\siperpus\Exception\ValidationException;
-    use axrous\siperpus\Repository\BookRepository;
+use axrous\siperpus\Exception\ValidationException;
+use axrous\siperpus\Repository\BookRepository;
 use axrous\siperpus\Service\BookService;
 use PHPUnit\Framework\TestCase;
+use axrous\siperpus\Domain\Book;
 
 class BookControllerTest extends TestCase {
 
@@ -67,6 +68,30 @@ class BookControllerTest extends TestCase {
         $this->expectOutputRegex('[Submit]');
         
 
+    }
+
+    public function testPostUpdateBookSuccess() {
+
+        $book = new Book();
+        $book->kode = 'B001';
+        $book->judul = 'Buku Kenangan';
+        $book->penulis = 'Arga Satya';
+        $book->penerbit = 'Axrous';
+        $book->tahunTerbit = "2022";
+        $book->gambar = "gambar.jpg";
+        $book->pdf = "book.pdf";
+        $this->bookRepository->save($book);
+
+        $_POST['kode'] = 'B001';
+        $_POST['judul'] = 'Buku Kenangan';
+        $_POST['penulis'] = 'Arga';
+        $_POST['penerbit'] = 'Arkuu';
+        $_POST['tahunTerbit'] = '2024';
+        $_POST['gambar'] = "gambar.jpg";
+        $_POST['pdf'] = "buku.pdf";
+
+        $this->bookController->postUpdateBook();
+        $this->expectOutputRegex("[Location: /admin/books]");
     }
 }
 

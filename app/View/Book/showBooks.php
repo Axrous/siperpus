@@ -54,7 +54,7 @@
                         <td><?= $book['penerbit']?></td>
                         <td><?= $book['tahun_terbit']?></td>
                         <td><a target="_blank" href="/book/<?=$book['kode_buku']?>">Buku</a></td>
-                        <td><a  href="book-edit.html">Edit</a> || <a href="#">Hapus</a></td>
+                        <td><a  href="/admin/edit-book/<?=$book['kode_buku']?>">Edit</a> || <a href="/admin/delete-book/<?=$book['kode_buku']?>">Hapus</a></td>
                       </tr>
                       
                       <?php $angka++; }?>
