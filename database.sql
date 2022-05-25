@@ -38,7 +38,7 @@ CREATE TABLE peminjaman(
     id_peminjaman VARCHAR(4) NOT NULL,
     id_user VARCHAR(100) NOT NULL,
     kode_buku VARCHAR(100) NOT NULL,
-    tanggal_pinjam DATETIME,
+    tanggal_pinjam DATE,
     PRIMARY KEY(id_peminjaman)
 ) ENGINE = InnoDB;
 

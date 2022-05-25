@@ -11,7 +11,24 @@ class PinjamRepository {
 
     public function __construct(PDO $connection)
     {
-        $this->$connection = $connection;
+        $this->connection = $connection;
+    }
+
+    public function getUniqKode() {
+        $statement = $this->connection->prepare("SELECT max(id_peminjaman) as idPinjam FROM peminjaman");
+        $statement->execute();
+
+        if($row = $statement->fetch()) {
+            $idPinjam = $row['idPinjam'];
+
+            $urutan = (int) substr($idPinjam, 3, 3);
+            $urutan++;
+            
+            $huruf = "B";
+            $kode = $huruf . sprintf("%03s", $urutan);
+            return $kode;
+        }
+
     }
 
     public function save(Peminjaman $pinjam): Peminjaman {
@@ -26,13 +43,41 @@ class PinjamRepository {
         $this->connection->exec("DELETE FROM peminjaman");
     }
 
-    public function findAllByIdUser(string $id):?Peminjaman {
+    public function findAllByIdUser(string $id):?Array {
 
-        $statement = $this->connection->prepare("SELECT id_peminjaman, id_user, kode_buku, tanggal_pinjam FROM peminjaman AS p
-        JOIN users as u ON p.id_user = u.id
-        JOIN books as b ON p.kode_buku = b.kode_buku
-        WHERE p.id_user = $id");
+        $statement = $this->connection->prepare("SELECT books.kode_buku, books.gambar, books.judul, books.penulis, books.penerbit, books.tahun_terbit, peminjaman.tanggal_pinjam FROM books
+        JOIN peminjaman on books.kode_buku = peminjaman.kode_buku
+        JOIN users on users.id = peminjaman.id_user
+        WHERE users.id = ?");
+        $statement->execute([$id]);
 
+        if($result = $statement->fetchAll(PDO::FETCH_ASSOC)) {
+            return $result;
+        } else {
+            return null;
+        }
+
+
+
+
+
+        // try{
+        //     if($row = $statement->fetch()) {
+        //         $pinjam = new Peminjaman();
+        //         $pinjam->idPinjam = $row['id_peminjaman'];
+        //         $pinjam->idUser = $row['id_user'];
+        //         $pinjam->kodeBuku = $row['kode-buku'];
+        //         $pinjam->tanggalPinjam = $row['tanggal_pinjam'];
+        //         return $pinjam;
+        //     } else {
+        //         return null;
+        //     }
+        // } finally {
+        //     $statement->closeCursor();
+        // }
+
+        
+        
     }
     
 }

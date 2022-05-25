@@ -99,7 +99,7 @@ class BookService {
             $book->gambar = $request->gambar;
             $book->pdf = $request->pdf;
 
-            $this->bookRepository->update($book);
+            $this->bookRepository->update($book, $book->kode);
 
             Database::commitTranscation();
 

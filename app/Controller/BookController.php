@@ -10,17 +10,30 @@ use axrous\siperpus\Domain\Book;
 use axrous\siperpus\Exception\ValidationException;
 use axrous\siperpus\Model\BookAddRequest;
 use axrous\siperpus\Model\BookUpdateRequest;
+use axrous\siperpus\Repository\PinjamRepository;
+use axrous\siperpus\Repository\SessionRepository;
+use axrous\siperpus\Repository\UserRepository;
+use axrous\siperpus\Service\PinjamService;
+use axrous\siperpus\Service\SessionService;
 
 class BookController{
     private BookService $bookService;
     private BookRepository $bookRepository;
+    private PinjamService $pinjamService;
+    private SessionService $sessionService;
 
     public function __construct()
     {
         $connection = Database::getConnection();
         $this->bookRepository = new BookRepository($connection);
         $this->bookService = new BookService($this->bookRepository);
+
+        $pinjamRepository = new PinjamRepository($connection);
+        $this->pinjamService = new PinjamService($pinjamRepository);
         
+        $sessionRepository = new SessionRepository($connection);
+        $userRepository = new UserRepository($connection);
+        $this->sessionService = new SessionService($sessionRepository, $userRepository);
     }
 
     public function showAllBooks() {
@@ -133,5 +146,25 @@ class BookController{
         $this->bookService->deleteBook($kode);
 
         View::redirect('/admin/books');
+    }
+
+    public function showBookPage(string $kode) {
+        $user = $this->sessionService->current();
+        $books = $this->pinjamService->showBooksUser($user->id);
+        $book = $this->bookService->detailBook($kode);
+
+        try {
+            foreach ($books as $bok) {
+                if($bok['kode_buku'] == $book->kode) {
+                    View::render('Book/bookPage',[
+                        "title" => "SIPERPUS",
+                        "book" => $book->kode,
+                        "titleBook" => $book->judul
+                    ]);
+                }
+            }
+        } catch(ValidationException $exception) {
+            View::redirect('/');
+        }
     }
 }

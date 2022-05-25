@@ -74,9 +74,9 @@ class BookRepository {
 
     }
 
-    public function update(Book $book): Book {
-        $statement = $this->connection->prepare("UPDATE books SET judul = ?, penulis = ?, penerbit = ?, tahun_terbit = ?, gambar = ?, pdf = ?");
-        $statement->execute([$book->judul, $book->penulis, $book->penerbit, $book->tahunTerbit, $book->gambar, $book->pdf]);
+    public function update(Book $book, $kodeBuku): Book {
+        $statement = $this->connection->prepare("UPDATE books SET judul = ?, penulis = ?, penerbit = ?, tahun_terbit = ?, gambar = ?, pdf = ? WHERE kode_buku = ?");
+        $statement->execute([$book->judul, $book->penulis, $book->penerbit, $book->tahunTerbit, $book->gambar, $book->pdf, $kodeBuku]);
 
         return $book;
     }

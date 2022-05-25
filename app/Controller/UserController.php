@@ -93,4 +93,27 @@ class UserController {
             "user" => $user
         ]);
     }
+
+    public function userProfile(){
+        $user = $this->sessionService->current();
+        
+        View::render("User/profile", [
+            'title' => "Profile",
+            'user' => [
+                'nama' => $user->name,
+                'gender' => $user->gender,
+                'email' => $user->email
+            ]
+        ]);
+    }
+
+    public function profileEdit() {
+        $user = $this->sessionService->current();
+        
+        View::render("User/profile-edit", [
+            'title' => "Edit Profile",
+        ]);
+    }
+    
+
 }
