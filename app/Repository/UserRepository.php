@@ -73,4 +73,11 @@ class UserRepository {
         }
 
     }
+
+    public function update(User $user) {
+        $statement = $this->connection->prepare("UPDATE users SET password = ? WHERE id = ? ");
+        $result = $statement->execute([$user->password, $user->id]);
+
+        return $result;
+    }
 }

@@ -5,6 +5,8 @@ namespace axrous\siperpus\Service;
 use axrous\siperpus\Config\Database;
 use axrous\siperpus\Domain\User;
 use axrous\siperpus\Exception\ValidationException;
+use axrous\siperpus\Model\UserEditPasswordRequest;
+use axrous\siperpus\Model\UserEditPasswordResponse;
 use axrous\siperpus\Model\UserLoginRequest;
 use axrous\siperpus\Model\UserLoginResponse;
 use axrous\siperpus\Model\UserRegisterRequest;
@@ -15,6 +17,7 @@ use Exception;
 class UserService {
 
     private UserRepository $userRepository;
+    private SessionService $sessionService;
 
     public function __construct(UserRepository $userRepository)
     {
@@ -94,5 +97,42 @@ class UserService {
         $result =$this->userRepository->sumOfUsers();
 
         return $result;
+    }
+
+    public function editPassword(UserEditPasswordRequest $request) {
+        // $this->validateEditPasswordRequest($request);
+
+        try{
+            Database::beginTranscation();
+
+            $user = $this->userRepository->findById($request->id);
+            if($user == null) {
+                throw new ValidationException("User not found");
+            }
+
+            if(!password_verify($request->oldPassword, $user->password)){
+                throw new ValidationException("Old Password is wrong");
+            }
+
+            $user->password = password_hash($request->newPassword, PASSWORD_BCRYPT);
+            $this->userRepository->update($user);
+
+            Database::commitTranscation();
+
+            $response = new UserEditPasswordResponse();
+            $response->user = $user;
+
+            return $response;
+        } catch(\Exception $exception){
+            Database::rollbackTranscation();
+            throw $exception;
+        }
+
+    }
+
+    public function validateEditPasswordRequest(UserEditPasswordRequest $request) {
+        if($request->password == null || trim($request->password) == '') {
+            throw new ValidationException("Password Cannot Blank");
+        }
     }
 }

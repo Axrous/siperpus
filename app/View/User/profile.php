@@ -47,7 +47,7 @@
 
             </tbody>
             </table>
-            <a class="btn btn-primary" href="/users/profile/edit" role="button">Edit</a>
+            <a class="btn btn-primary" href="/users/profile/edit" role="button">Edit Password</a>
         </div>
     </div>
 </div>

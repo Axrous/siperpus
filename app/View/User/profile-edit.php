@@ -27,46 +27,22 @@
             </div>
         </div>
         <div class="col">
-            <form action="#" method="post">
+            <form action="/users/profile/edit" method="post">
                 <table class="table table-borderless">
                     <tbody>
                         <tr>
-                            <td style="width: 150px;">Nama</td>
+                            <td style="width: 150px;">New Password</td>
                             <td style="width: 10px;">:</td>
-                            <td><input type="text" class="form-control"></td>
+                            <td><input type="password" class="form-control" name="newPassword"></td>
                         </tr>
                         <tr>
-                            <td>Jenis Kelamin</td>
-                            <td>:</td>
-                            <td><div class="form-check-inline ms-3">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">Male</label>
-                            </div>
-                            <div class="form-check-inline">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">Female</label>
-                            </div></td>
+                            <td style="width: 150px;">Current Password</td>
+                            <td style="width: 10px;">:</td>
+                            <td><input type="password" class="form-control" name="oldPassword"></td>
                         </tr>
-                        <tr>
-                            <td>Tempat / Tanggal Lahir</td>
-                            <td>:</td>
-                            <td><input class="form-control form-control-sm" type="date"></td>
-                        </tr>
-
-                        <tr>
-                            <td>No. Handphone</td>
-                            <td>:</td>
-                            <td><input type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>:</td>
-                            <td><input type="email" class="form-control"></td>
-                        </tr>
-
                     </tbody>
                     </table>
-                    <a class="btn btn-primary" href="#" role="button">Save Changes</a>
+                    <button class="btn btn-primary"type="submit">Change Password</button>
                     <a class="btn btn-secondary" href="/users/profile">Cancel</a>
             </form>
             

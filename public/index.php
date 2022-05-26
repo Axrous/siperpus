@@ -29,6 +29,7 @@ Router::add('GET', '/admin/users',UserController::class, 'users', [MustAdminMidd
 Router::add('GET', '/users/books', PinjamController::class, 'booksUser', [MustLoginMiddleware::class]);
 Router::add('GET', '/users/profile', UserController::class, "userProfile", [MustLoginMiddleware::class]);
 Router::add('GET', '/users/profile/edit', UserController::class, "profileEdit", [MustLoginMiddleware::class]);
+Router::add('POST', '/users/profile/edit', UserController::class, 'postProfileEdit', [MustLoginMiddleware::class]);
 
 //Book Controller
 Router::add('GET', '/admin/books', BookController::class, 'showAllBooks', [MustAdminMiddleware::class]);

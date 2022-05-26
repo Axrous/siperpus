@@ -5,6 +5,7 @@ namespace axrous\siperpus\Controller;
 use axrous\siperpus\App\View;
 use axrous\siperpus\Config\Database;
 use axrous\siperpus\Exception\ValidationException;
+use axrous\siperpus\Model\UserEditPasswordRequest;
 use axrous\siperpus\Model\UserLoginRequest;
 use axrous\siperpus\Model\UserRegisterRequest;
 use axrous\siperpus\Repository\SessionRepository;
@@ -115,5 +116,23 @@ class UserController {
         ]);
     }
     
+    public function postProfileEdit() {
+        $user = $this->sessionService->current();
+
+        $request = new UserEditPasswordRequest();
+        $request->id = $user->id;
+        $request->newPassword = $_POST['newPassword'];
+        $request->oldPassword = $_POST['oldPassword'];
+
+        try {
+            $this->userService->editPassword($request);
+            View::redirect('/users/profile');
+        } catch (ValidationException $exception) {
+            View::render('User/profile-edit', [
+                'title' => 'Edit Password',
+                'error' => $exception->getMessage()
+            ]);
+        }
+    }
 
 }
