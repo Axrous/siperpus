@@ -44,4 +44,5 @@ Router::add('GET', '/users/book/([0-9a-zA-Z]*)', BookController::class, 'showBoo
 
 //Pinjam Controll
 Router::add('POST', '/users/pinjam/([0-9a-zA-Z]*)', PinjamController::class, 'postAddPeminjaman', [MustLoginMiddleware::class]);
+Router::add('GET', '/admin/transaction', PinjamController::class, 'showTransaction', [MustAdminMiddleware::class]);
 Router::run();

@@ -7,7 +7,7 @@
                       <li class="mb-3"><a href="/" class="text-decoration-none text-white">Dashboard</a></li>
                       <li class="mb-3"><a href="/admin/users" class="text-decoration-none text-white">Anggota</a></li>
                       <li class="mb-3"><a href="/admin/books" class="text-decoration-none text-white">Buku</a></li>
-                      <li class="mb-3"><a href="/admin/transaction" class="text-decoration-none text-white">Transaksi</a></li>
+                      <li class="mb-3"><a href="" class="text-decoration-none text-white">Transaksi</a></li>
                       <li class="mb-3"><a href="#" class="text-decoration-none text-white">Laporan</a></li>
                     </ul>
                     <div class="fixed-bottom my-4 mx-5">
@@ -18,30 +18,33 @@
 
 
             <div class="col py-3">
-                <h1>Data Anggota</h1>
 
-                <table class="table mt-5 mx-auto">
-                    <caption>List of users</caption>
-                    <thead>
+            <h1 class="mb-3">Data Transaksi Peminjaman</h1>
+                <table class="table">
+                    <thead class="table-dark">
                       <tr>
                         <th scope="col">No</th>
-                        <th scope="col">Username</th>
+                        <th scope="col">No. Pinjam</th>
+                        <th scope="col">Kode Buku</th>
+                        <th scopr col>Username</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">Jenis Kelamin</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Tanggal Pinjam</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php $angka = 1;?>
-                        <?php foreach($model['user'] as $user) { ?>
+                        <?php $no = 1;?>
+                        <?php foreach ($model['transaction'] as $user) {?>
+
                       <tr>
-                        <th scope="row"><?=$angka?></th>
+                        <th scope="row"><?=$no?></th>
+                        <td><?=$user['id_peminjaman']?></td>
+                        <td><?=$user['kode_buku']?></td>
                         <td><?=$user['id']?></td>
                         <td><?=$user['name']?></td>
-                        <td><?=$user['gender']?></td>
-                        <td><?=$user['email']?></td>
+                        <td><?=$user['tanggal_pinjam']?></td>
                       </tr>
-                      <?php $angka++; }?>
+
+                      <?php $no++; } ?>
                     </tbody>
                   </table>
             </div>

@@ -58,4 +58,14 @@ class PinjamController {
             "books" => $books
         ]);
     }
+
+    public function showTransaction() {
+        
+        $transaction = $this->pinjamService->showAllTransaction();
+
+        View::render("Home/Admin/transaction", [
+            "title" => 'Transaction',
+            "transaction" => $transaction,
+        ]);
+    }
 }

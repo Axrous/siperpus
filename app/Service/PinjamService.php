@@ -40,4 +40,10 @@ class PinjamService {
         }
     }
     
+    public function showAllTransaction() {
+        
+        $result = $this->pinjamRepository->findAll();
+
+        return $result;
+    }
 }

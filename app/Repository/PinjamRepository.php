@@ -56,28 +56,20 @@ class PinjamRepository {
         } else {
             return null;
         }
-
-
-
-
-
-        // try{
-        //     if($row = $statement->fetch()) {
-        //         $pinjam = new Peminjaman();
-        //         $pinjam->idPinjam = $row['id_peminjaman'];
-        //         $pinjam->idUser = $row['id_user'];
-        //         $pinjam->kodeBuku = $row['kode-buku'];
-        //         $pinjam->tanggalPinjam = $row['tanggal_pinjam'];
-        //         return $pinjam;
-        //     } else {
-        //         return null;
-        //     }
-        // } finally {
-        //     $statement->closeCursor();
-        // }
-
         
-        
+    }
+
+    public function findAll() {
+        $statement = $this->connection->prepare("SELECT peminjaman.id_peminjaman, users.id, users.name, peminjaman.tanggal_pinjam, books.kode_buku FROM books
+        JOIN peminjaman on books.kode_buku = peminjaman.kode_buku
+        JOIN users on users.id = peminjaman.id_user");
+        $statement->execute();
+
+        if($result = $statement->fetchAll(PDO::FETCH_ASSOC)) {
+            return $result;
+        } else {
+            return null;
+        }
     }
     
 }

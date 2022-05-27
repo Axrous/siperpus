@@ -7,7 +7,7 @@
                       <li class="mb-3"><a href="/" class="text-decoration-none text-white">Dashboard</a></li>
                       <li class="mb-3"><a href="/admin/users" class="text-decoration-none text-white">Anggota</a></li>
                       <li class="mb-3"><a href="/admin/books" class="text-decoration-none text-white">Buku</a></li>
-                      <li class="mb-3"><a href="" class="text-decoration-none text-white">Transaksi</a></li>
+                      <li class="mb-3"><a href="/admin/transaction" class="text-decoration-none text-white">Transaksi</a></li>
                       <li class="mb-3"><a href="#" class="text-decoration-none text-white">Laporan</a></li>
                     </ul>
                     <div class="fixed-bottom my-4 mx-5">
